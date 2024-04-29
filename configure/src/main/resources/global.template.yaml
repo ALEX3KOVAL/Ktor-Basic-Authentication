@@ -1,0 +1,11 @@
+mainDB:
+  jdbcURL: test
+  login: test
+  password: test
+  dbName: test
+  dbHost: localhost
+  dbPort: 6666
+  maximumPoolSize: 20
+
+securitySecretKey:
+  value: securitysecretkey
