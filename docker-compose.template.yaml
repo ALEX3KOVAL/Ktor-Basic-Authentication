@@ -1,0 +1,15 @@
+services:
+  sza_db:
+    container_name: ${DB_CONTAINER_NAME}
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    volumes:
+      - ./docker/data:/var/lib/postgresql/data
+      - ./docker/pg.conf:/etc/postgresql.conf
+    ports:
+      - ${EXTERNAL_DB_PORT}:${INTERNAL_DB_PORT}
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
