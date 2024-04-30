@@ -33,7 +33,7 @@ class SecurityService(private val securitySecretKey: String) {
      *
      * @param staff RDTO сотрудника
      */
-    private fun getToken(staff: ClientRDTO): String = md5("${staff.login}${staff.password}$securitySecretKey").toHex()
+    fun getToken(staff: ClientRDTO): String = md5("${staff.login}${staff.password}$securitySecretKey").toHex()
 
     /**
      * Сравнить токен доступа пользователя, который пришёл с клиента
