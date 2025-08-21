@@ -32,7 +32,6 @@ fun Route.configureLoginModule() {
             transaction { clientRepository.get(login = session.name) }?.let { client ->
                 // если у сотрудника есть сессия, он активный и токен у него корректный, то редиректим на главную страницу
                 if (securityService.checkToken(client = client, token = session.token) && client.activity.isActive()) {
-                    // todo далее изменить адрес
                     call.respondRedirect(url = "/")
                 }
             }
@@ -58,7 +57,6 @@ fun Route.configureLoginModule() {
                     clientRepository.get(userName)!!
                 }
                 call.sessions.set(ClientSession(name = userName, securityService.getToken(user)))
-                // todo далее изменить адрес
                 call.respondRedirect(url = "/")
             } catch (e: Exception) {
                 call.respondRedirect("/login")
