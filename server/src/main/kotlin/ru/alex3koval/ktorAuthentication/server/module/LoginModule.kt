@@ -30,7 +30,7 @@ fun Route.configureLoginModule() {
 
         call.sessions.get<ClientSession>()?.let { session ->
             transaction { clientRepository.get(login = session.name) }?.let { client ->
-                // если у сотрудника есть сессия, он активный и токен у него корректный, то редиректим на страницу кредитора
+                // если у сотрудника есть сессия, он активный и токен у него корректный, то редиректим на главную страницу
                 if (securityService.checkToken(client = client, token = session.token) && client.activity.isActive()) {
                     // todo далее изменить адрес
                     call.respondRedirect(url = "/")
